@@ -1,0 +1,64 @@
+@font-face {
+  font-family:'montserrat';
+  src: url(/fonts/Montserrat-Medium.ttf);
+}
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'montserrat';
+}
+
+main {
+  flex: 1;
+}
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: var(--primary-color) !important;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.status-pending {
+  background-color: var(--warning-color);
+  color: #000;
+}
+
+.status-completed {
+  background-color: var(--success-color);
+  color: #fff;
+}
+
+.status-delayed {
+  background-color: var(--danger-color);
+  color: #fff;
+}

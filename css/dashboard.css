@@ -1,0 +1,100 @@
+/* Dashboard specific styles */
+.welcome-card {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #4c63d2 100%);
+    border: none;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.stats-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.stats-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.recent-item {
+    transition: background-color 0.2s ease;
+}
+
+.recent-item:hover {
+    background-color: #f8f9fa;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Dashboard grid improvements */
+.dashboard-grid {
+    gap: 1.5rem;
+}
+
+.dashboard-section {
+    margin-bottom: 2rem;
+}
+
+/* Quick action buttons */
+.quick-action-card {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.quick-action-card:hover {
+    border-color: var(--primary-color);
+    background-color: #f8f9fa;
+}
+
+/* Status indicators */
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.status-pending {
+    background-color: var(--warning-color);
+}
+
+.status-completed {
+    background-color: var(--success-color);
+}
+
+.status-delayed {
+    background-color: var(--danger-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .welcome-card {
+        text-align: center;
+    }
+    
+    .display-5 {
+        font-size: 2rem;
+    }
+    
+    .dashboard-grid {
+        gap: 1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}

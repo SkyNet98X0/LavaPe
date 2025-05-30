@@ -1,0 +1,29 @@
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-label {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.invalid-feedback {
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  padding: 0.5rem 2rem;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-section {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
