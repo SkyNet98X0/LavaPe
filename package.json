@@ -1,0 +1,13 @@
+{
+  "name": "lavape",
+  "version": "1.0.0",
+  "description": "LavaPe: Tu Lavandería al Toque - Sistema de gestión de lavandería",
+  "scripts": {
+    "start": "servor --reload"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "chart.js": "^4.4.1",
+    "servor": "^4.0.2"
+  }
+}

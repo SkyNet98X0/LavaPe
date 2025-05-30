@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - LavaPe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">LavaPe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- Navigation will be populated by auth.js based on user role -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <!-- Header Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="h2 mb-1">Gestión de Usuarios</h1>
+                        <p class="text-muted mb-0">Administra los usuarios registrados en el sistema</p>
+                    </div>
+                    <div class="text-end">
+                        <small class="text-muted">Total de usuarios: <span id="totalUsersCount" class="fw-bold">0</span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary" id="totalUsers">0</h5>
+                        <p class="card-text">Usuarios Totales</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-success" id="activeUsers">0</h5>
+                        <p class="card-text">Usuarios Activos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-info" id="newUsersThisMonth">0</h5>
+                        <p class="card-text">Nuevos este Mes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchUser" placeholder="Buscar por nombre, apellido o email...">
+                    <button class="btn btn-outline-secondary" type="button" id="searchBtn">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" id="roleFilter">
+                    <option value="">Todos los roles</option>
+                    <option value="usuario">Usuarios</option>
+                    <option value="admin">Administradores</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Lista de Usuarios</h5>
+                        <button class="btn btn-sm btn-outline-primary" id="refreshBtn">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
+                                        <th>Fecha de Registro</th>
+                                        <th>Pedidos</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTableBody">
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Cargando...</span>
+                                            </div>
+                                            <p class="mt-2 mb-0 text-muted">Cargando usuarios...</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Details Modal -->
+        <div class="modal fade" id="userDetailsModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detalles del Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="fw-bold">Información Personal</h6>
+                                <p><strong>Nombre:</strong> <span id="modalUserName"></span></p>
+                                <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
+                                <p><strong>Rol:</strong> <span id="modalUserRole" class="badge"></span></p>
+                                <p><strong>Fecha de Registro:</strong> <span id="modalUserDate"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="fw-bold">Estadísticas de Pedidos</h6>
+                                <p><strong>Total de Pedidos:</strong> <span id="modalUserTotalOrders">0</span></p>
+                                <p><strong>Pedidos Pendientes:</strong> <span id="modalUserPendingOrders">0</span></p>
+                                <p><strong>Pedidos Completados:</strong> <span id="modalUserCompletedOrders">0</span></p>
+                                <p><strong>Último Pedido:</strong> <span id="modalUserLastOrder">-</span></p>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <h6 class="fw-bold">Pedidos Recientes</h6>
+                        <div id="modalUserOrders">
+                            <p class="text-muted">Cargando pedidos...</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/usuarios.js"></script>
+</body>
+</html>

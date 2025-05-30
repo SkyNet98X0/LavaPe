@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - LavaPe</title>
+    <link href="bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="auth-card">
+                        <div class="text-center mb-4">
+                            <h1 class="brand-title">LavaPe</h1>
+                            <p class="text-muted">Tu Lavandería al Toque</p>
+                        </div>
+                        
+                        <h2 class="auth-title">Iniciar Sesión</h2>
+                        
+                        <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+                        
+                        <form id="loginForm" novalidate>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">
+                                    Por favor ingresa un correo válido.
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" required>
+                                <div class="invalid-feedback">
+                                    La contraseña es obligatoria.
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 mb-3">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                Ingresar
+                            </button>
+                        </form>
+                        
+                        <div class="text-center">
+                            <p class="mb-0">¿No tienes cuenta? <a href="register.html" class="text-decoration-none">Regístrate aquí</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js" type="module"></script>
+    <script src="js/login.js" type="module"></script>
+</body>
+</html>

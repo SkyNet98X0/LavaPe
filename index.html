@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LavaPe - Tu Lavandería al Toque</title>
+    <link href="bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">LavaPe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- Navigation will be populated by auth.js based on user role -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+    <main class="container py-5">
+        <!-- Welcome Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="welcome-card p-4 rounded shadow-sm bg-primary text-white">
+                    <h1 class="display-5 mb-2">¡Bienvenido, <span id="userName">Usuario</span>!</h1>
+                    <p class="lead mb-0" style="color:rgb(224, 227, 255) ;">Panel de control - <span id="userRole">Usuario</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Dashboard -->
+        <div id="userDashboard" class="d-none">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="h3 mb-3">Mis Pedidos</h2>
+                </div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary" id="userTotalOrders">0</h5>
+                            <p class="card-text">Total de Pedidos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning" id="userPendingOrders">0</h5>
+                            <p class="card-text">Pendientes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title text-success" id="userCompletedOrders">0</h5>
+                            <p class="card-text">Completados</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger" id="userDelayedOrders">0</h5>
+                            <p class="card-text">Retrasados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Pedidos Recientes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="userRecentOrders">
+                                <p class="text-muted">Cargando pedidos...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" class="d-none">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="h3 mb-3">Panel de Administración</h2>
+                </div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary" id="adminTotalOrders">0</h5>
+                            <p class="card-text">Total de Pedidos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title text-info" id="adminTotalUsers">0</h5>
+                            <p class="card-text">Total de Usuarios</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning" id="adminPendingOrders">0</h5>
+                            <p class="card-text">Pedidos Pendientes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger" id="adminDelayedOrders">0</h5>
+                            <p class="card-text">Pedidos Retrasados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Pedidos Recientes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="adminRecentOrders">
+                                <p class="text-muted">Cargando pedidos...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Usuarios Recientes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="adminRecentUsers">
+                                <p class="text-muted">Cargando usuarios...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

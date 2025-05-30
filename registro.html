@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LavaPe - Nuevo Pedido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">LavaPe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- Navigation will be populated by auth.js based on user role -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="h3 mb-0">
+                            <i class="fas fa-plus-circle me-2"></i>
+                            Nuevo Pedido
+                        </h1>
+                    </div>
+                    <div class="card-body">
+                        <!-- Alert Messages -->
+                        <div id="success-message" class="alert alert-success d-none" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <span id="success-text"></span>
+                        </div>
+                        
+                        <div id="error-message" class="alert alert-danger d-none" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <span id="error-text"></span>
+                        </div>
+
+                        <form id="pedidoForm" class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nombreCliente" class="form-label">
+                                        <i class="fas fa-user me-1"></i>
+                                        Nombre del Cliente
+                                    </label>
+                                    <input type="text" class="form-control" id="nombreCliente" required>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese el nombre del cliente
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="tipoPrenda" class="form-label">
+                                        <i class="fas fa-tshirt me-1"></i>
+                                        Tipo de Prenda
+                                    </label>
+                                    <select class="form-select" id="tipoPrenda" required>
+                                        <option value="">Seleccione tipo de prenda</option>
+                                        <option value="Camisa">Camisa</option>
+                                        <option value="Pantalón">Pantalón</option>
+                                        <option value="Vestido">Vestido</option>
+                                        <option value="Saco">Saco</option>
+                                        <option value="Falda">Falda</option>
+                                        <option value="Blusa">Blusa</option>
+                                        <option value="Chaqueta">Chaqueta</option>
+                                        <option value="Abrigo">Abrigo</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione el tipo de prenda
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cantidad" class="form-label">
+                                        <i class="fas fa-hashtag me-1"></i>
+                                        Cantidad
+                                    </label>
+                                    <input type="number" class="form-control" id="cantidad" min="1" max="100" required>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese una cantidad válida (1-100)
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="fechaEntrega" class="form-label">
+                                        <i class="fas fa-calendar-alt me-1"></i>
+                                        Fecha de Entrega
+                                    </label>
+                                    <input type="date" class="form-control" id="fechaEntrega" required>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione una fecha de entrega válida
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="observaciones" class="form-label">
+                                    <i class="fas fa-sticky-note me-1"></i>
+                                    Observaciones (Opcional)
+                                </label>
+                                <textarea class="form-control" id="observaciones" rows="3" 
+                                          placeholder="Instrucciones especiales, manchas difíciles, etc."></textarea>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true"></span>
+                                    <i class="fas fa-save me-2"></i>
+                                    Registrar Pedido
+                                </button>
+                                <a href="listar.html" class="btn btn-outline-secondary">
+                                    <i class="fas fa-list me-2"></i>
+                                    Ver Mis Pedidos
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">© 2025 LavaPe - Tu Lavandería al Toque. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/registro.js"></script>
+</body>
+</html>

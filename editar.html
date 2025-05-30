@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LavaPe - Editar Pedido</title>
+    <link href="bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">
+                <i class="fas fa-tshirt me-2"></i>LavaPe
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- Navigation will be populated by auth.js based on user role -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <!-- Admin Notice -->
+        <div class="alert alert-info d-flex align-items-center mb-4">
+            <i class="fas fa-info-circle me-2"></i>
+            <div>
+                <strong>Modo Administrador:</strong> Estás editando un pedido como administrador. 
+                Los cambios se aplicarán inmediatamente.
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="h2 mb-1">
+                            <i class="fas fa-edit me-2 text-primary"></i>
+                            Editar Pedido
+                        </h1>
+                        <p class="text-muted mb-0">Modifica los detalles del pedido seleccionado</p>
+                    </div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="index.html" class="text-decoration-none">
+                                    <i class="fas fa-home me-1"></i>Inicio
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="listar.html" class="text-decoration-none">Pedidos</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Editar</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-clipboard-list me-2"></i>
+                            Detalles del Pedido
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="pedidoForm" class="needs-validation" novalidate>
+                            <!-- Cliente (Solo lectura) -->
+                            <div class="mb-3">
+                                <label for="nombreCliente" class="form-label">
+                                    <i class="fas fa-user me-1"></i>
+                                    Nombre del Cliente
+                                </label>
+                                <input type="text" class="form-control bg-light" id="nombreCliente" disabled readonly>
+                                <div class="form-text">
+                                    <i class="fas fa-lock me-1"></i>
+                                    El nombre del cliente no se puede modificar
+                                </div>
+                            </div>
+
+                            <!-- Tipo de Prenda -->
+                            <div class="mb-3">
+                                <label for="tipoPrenda" class="form-label">
+                                    <i class="fas fa-tshirt me-1"></i>
+                                    Tipo de Prenda *
+                                </label>
+                                <select class="form-select" id="tipoPrenda" required>
+                                    <option value="">Seleccione tipo de prenda</option>
+                                    <option value="Camisa">Camisa</option>
+                                    <option value="Pantalón">Pantalón</option>
+                                    <option value="Vestido">Vestido</option>
+                                    <option value="Saco">Saco</option>
+                                    <option value="Falda">Falda</option>
+                                    <option value="Blusa">Blusa</option>
+                                    <option value="Chaqueta">Chaqueta</option>
+                                    <option value="Abrigo">Abrigo</option>
+                                    <option value="Traje">Traje</option>
+                                    <option value="Uniforme">Uniforme</option>
+                                    <option value="Ropa de cama">Ropa de cama</option>
+                                    <option value="Cortinas">Cortinas</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, seleccione un tipo de prenda.
+                                </div>
+                            </div>
+
+                            <!-- Cantidad -->
+                            <div class="mb-3">
+                                <label for="cantidad" class="form-label">
+                                    <i class="fas fa-sort-numeric-up me-1"></i>
+                                    Cantidad de Prendas *
+                                </label>
+                                <input type="number" class="form-control" id="cantidad" min="1" max="100" required>
+                                <div class="invalid-feedback">
+                                    Por favor, ingrese una cantidad válida (1-100).
+                                </div>
+                                <div class="form-text">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Número de prendas del mismo tipo a procesar
+                                </div>
+                            </div>
+
+                            <!-- Fecha de Entrega -->
+                            <div class="mb-4">
+                                <label for="fechaEntrega" class="form-label">
+                                    <i class="fas fa-calendar-alt me-1"></i>
+                                    Fecha de Entrega *
+                                </label>
+                                <input type="date" class="form-control" id="fechaEntrega" required>
+                                <div class="invalid-feedback">
+                                    Por favor, seleccione una fecha de entrega válida.
+                                </div>
+                                <div class="form-text">
+                                    <i class="fas fa-clock me-1"></i>
+                                    La fecha debe ser posterior a hoy
+                                </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-outline-secondary me-md-2" onclick="cancelEdit()">
+                                    <i class="fas fa-times me-1"></i>
+                                    Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i>
+                                    Guardar Cambios
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Additional Information Card -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Información Importante
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-primary">
+                                    <i class="fas fa-shield-alt me-1"></i>
+                                    Permisos
+                                </h6>
+                                <ul class="list-unstyled small text-muted">
+                                    <li><i class="fas fa-check text-success me-1"></i> Solo administradores pueden editar pedidos</li>
+                                    <li><i class="fas fa-check text-success me-1"></i> Los cambios se guardan automáticamente</li>
+                                    <li><i class="fas fa-times text-danger me-1"></i> El cliente no puede ser modificado</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-primary">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>
+                                    Validaciones
+                                </h6>
+                                <ul class="list-unstyled small text-muted">
+                                    <li><i class="fas fa-check text-success me-1"></i> La fecha debe ser futura</li>
+                                    <li><i class="fas fa-check text-success me-1"></i> La cantidad debe ser positiva</li>
+                                    <li><i class="fas fa-check text-success me-1"></i> Todos los campos son obligatorios</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/orders.js"></script>
+    <script src="js/editar.js"></script>
+
+    <script>
+        // Función para cancelar la edición
+        function cancelEdit() {
+            if (confirm('¿Estás seguro de que deseas cancelar? Se perderán los cambios no guardados.')) {
+                window.location.href = 'listar.html';
+            }
+        }
+
+        // Prevenir cierre accidental con cambios no guardados
+        let formChanged = false;
+        let formSubmitted = false;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('pedidoForm');
+            const inputs = form.querySelectorAll('input, select');
+            
+            inputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (!formSubmitted) {
+                        formChanged = true;
+                    }
+                });
+            });
+            
+            // Manejar el envío del formulario
+            form.addEventListener('submit', function() {
+                formSubmitted = true;
+                formChanged = false; // Reset flag cuando se envía el formulario
+            });
+        });
+
+        // Advertir sobre cambios no guardados
+        window.addEventListener('beforeunload', function(e) {
+            if (formChanged && !formSubmitted && !window.formSubmittedSuccessfully) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Validación en tiempo real
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('pedidoForm');
+            const cantidadInput = document.getElementById('cantidad');
+            const fechaInput = document.getElementById('fechaEntrega');
+            
+            // Validación de cantidad en tiempo real
+            cantidadInput.addEventListener('input', function() {
+                const value = parseInt(this.value);
+                if (value < 1 || value > 100 || isNaN(value)) {
+                    this.classList.add('is-invalid');
+                    this.classList.remove('is-valid');
+                } else {
+                    this.classList.add('is-valid');
+                    this.classList.remove('is-invalid');
+                }
+            });
+
+            // Validación de fecha en tiempo real
+            fechaInput.addEventListener('change', function() {
+                const selectedDate = new Date(this.value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                if (selectedDate < today) {
+                    this.classList.add('is-invalid');
+                    this.classList.remove('is-valid');
+                } else {
+                    this.classList.add('is-valid');
+                    this.classList.remove('is-invalid');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

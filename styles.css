@@ -1,0 +1,23 @@
+@font-face {
+  font-family:'montserrat';
+  src: url(/fonts/Montserrat-Medium.ttf);
+}
+
+body {
+  font-family: 'montserrat';
+  min-height: 100vh;
+}
+
+.navbar {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  min-width: 9rem;
+  text-align: center;
+}
+
+.nav-link.active {
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 0.25rem;
+}
